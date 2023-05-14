@@ -1,0 +1,75 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 720px;
+}
+.login-container {
+  width: 400px;
+  height: 550px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 20px;
+  color: black;
+}
+
+.login-container div:nth-child(2) {
+  text-align: center;
+}
+
+.login-container p {
+  text-align: center;
+}
+.welcome {
+  text-align: center;
+  margin-top: 2rem;
+}
+.welcome h2 {
+  margin: 0;
+}
+.welcome p {
+  color: gray;
+  font-weight: 500;
+}
+#username {
+  width: 350px;
+}
+#password {
+  width: 350px;
+}
+
+.input {
+  width: 350px;
+}
+
+#login-btn {
+  width: 300px;
+  background-color: aqua;
+  border: none;
+  height: 50px;
+  color: gray;
+  font-weight: bold;
+  border-radius: 25px;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: black;
+}
+
+.background {
+  position: absolute;
+  z-index: -1;
+}
+
+.background img {
+  width: 100%;
+  height: 100%;
+}
+
+.loginform-container h5 {
+  margin: 0;
+}
