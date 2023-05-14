@@ -5,7 +5,10 @@
 package model;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.StringTokenizer;
 import java.util.UUID;
 import my.util.Validation;
 
@@ -26,6 +29,14 @@ public class Account {
         this.UID = UUID.randomUUID().toString();
         this.registerDate = Date.valueOf(LocalDate.now());
         this.lastLoginDate = Date.valueOf(LocalDate.now());
+    }
+    
+    public Account(String accountString) throws ParseException{
+        StringTokenizer st = new StringTokenizer(accountString,"+");
+        this.UID = st.nextToken();
+        this.username = st.nextToken();
+        this.registerDate = new Date(new SimpleDateFormat("yyyy-MM-dd").parse(st.nextToken()).getTime());
+        this.roles = st.nextToken();
     }
     
     public Account(String username, String password, String roles, boolean status){
@@ -107,5 +118,11 @@ public class Account {
     public void setStatus(boolean status){
         this.status = status;
     }
-    
+    @Override
+    public String toString(){
+        return getUID() + "+" 
+                + getUsername() + "+" 
+                + getRegisterDate() + "+"
+                + getRoles();
+    }
 }

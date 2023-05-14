@@ -31,4 +31,23 @@ public class LoginControler {
         return true;
     }
     
+    public boolean checkUsername(String username){
+        return accountDAO.read(username) != null;
+    }
+    
+    public boolean updateAccount(Account data){
+        if(data!=null){
+           if(accountDAO.read(data.getUsername()) != null){
+               accountDAO.update(data);
+               return true;
+           }
+        }
+        return false;
+    }
+    
+    public Account searchAccount(String username){
+        Account temp = accountDAO.read(username);
+        return temp;
+    }
+    
 }
