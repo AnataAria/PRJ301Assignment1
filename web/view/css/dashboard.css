@@ -1,5 +1,11 @@
 body{
     background-color: black;
+    color: white;
+}
+
+.main-container{
+    background-color: black;
+    height: 100%;
 }
 
 .header-container{
@@ -7,4 +13,35 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    color: white;
+    margin:0;
+    padding: 0;
+    height: 100px;
+}
+
+.header-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.am-container{
+    display: flex;
+    justify-content: center;
+}
+.admin-table{
+    display: flex;
+    justify-content: center;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+th{
+    width: 10rem;
+}
+td{
+    text-align: center;
+    vertical-align: central;
 }

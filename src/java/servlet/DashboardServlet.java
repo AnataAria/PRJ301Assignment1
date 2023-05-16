@@ -4,8 +4,10 @@
  */
 package servlet;
 
+import controler.DashboardControler;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,8 +22,7 @@ import model.Account;
  * @author AnataArisa
  */
 public class DashboardServlet extends HttpServlet {
-
-
+    private final DashboardControler dc = new DashboardControler();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Cookie cookieLists[] = req.getCookies();
@@ -30,13 +31,20 @@ public class DashboardServlet extends HttpServlet {
                 String userString = o.getValue();
                 try {
                     Account temp = new Account(userString);
-                    req.setAttribute("username", temp.getUsername());
+                    req.setAttribute("username", temp.getUsername().toUpperCase());
+                    if(!temp.getRoles().equals("admin")){
+                        req.setAttribute("admin", "none");
+                    }else{
+                        req.setAttribute("admin", "inline-block");
+                        List<Account> data = dc.getAllUserAccount();
+                        req.setAttribute("accList", data);
+                    }
                 } catch (ParseException ex) {
                     Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 req.getRequestDispatcher("view/dashboard.jsp").forward(req, resp);
-                break;
+                return;
             }
         }
         resp.sendRedirect("login");

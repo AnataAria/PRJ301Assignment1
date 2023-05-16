@@ -31,12 +31,12 @@ public class AccountDAO implements IDAO<Account> {
             sb.append("SELECT * FROM Account;");
             ResultSet rs = sm.executeQuery(sb.toString());
             while(rs.next()){
-                Account data= new Account(rs.getString("uid"),
+                Account data = new Account(rs.getString("uid"),
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getString("roles"),
                         rs.getDate("registerdate"),
-                        rs.getDate("lastregisterdate"),
+                        rs.getDate("lastlogindate"),
                         rs.getBoolean("status"));
                 accList.add(data);
             }
@@ -52,24 +52,25 @@ public class AccountDAO implements IDAO<Account> {
         try{
             Statement sm = con.createStatement();
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO Account VALUES (")
+            sb.append("INSERT INTO Account VALUES ('")
                     .append(data.getUID())
-                    .append(",")
+                    .append("','")
                     .append(data.getUsername())
-                    .append(",")
+                    .append("','")
                     .append(data.getPassword())
-                    .append(",")
+                    .append("','")
                     .append(data.getRegisterDate())
-                    .append(",")
+                    .append("','")
                     .append(data.getLastLoginDate())
-                    .append(",")
+                    .append("','")
                     .append(data.getRoles())
-                    .append(",")
+                    .append("','")
                     .append(data.getStatus())
-                    .append(");");
+                    .append("');");
             sm.executeUpdate(sb.toString());
-        }catch(Exception e){
+        }catch(SQLException e){
             System.out.println("Failed!!!");
+            e.printStackTrace();
         }
     }
 
